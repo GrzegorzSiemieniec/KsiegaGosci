@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <title>Księga Gości</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+  </head>
+  <body id="body">
+    <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bx-book' ></i>
+        <div class="logo_name">KSIĘGA GOŚCI</div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+      <ul class="nav-list">
+    <li>
+      <a class="change">
+        <i class='bx bxs-sun'></i>
+        <span class="links_name">Dark-Mode</span>
+      </a>
+      <span class="tooltip">Dark-Mode</span>
+    </li>
+    <li onclick="openFullscreen(); closeFullscreen()">
+      <a>
+      <i class='bx bx-fullscreen' ></i>
+      <span class="links_name">Fullscreen</span>
+    </a>
+      <span class="tooltip">Fullscreen</span>
+    </li>
+    <li class="profile">
+             <a href="configuracja.html" id="config">
+               <i class='bx bx-cog'></i>
+               <span class="links_name">Konfiguracja</span>
+             </a>
+             <span class="tooltip">Konfiguracja</span>
+    </li>
+        </ul>
+      </div>
+
+      <section class="home-section">
+        <h2>KSIĘGA GOŚCI</h2>
+        <center>
+          <form class="book" method="post" action="zapisz.php">
+          <input type="text" name="firstName" placeholder="Podaj imię" required><br>
+          <input type="text" name="lastName" placeholder="Podaj nazwisko" required><br>
+          <input type="text" name="firma" placeholder="Podaj nazwę firmy" required><br>
+          <input type="text" name="cel2" placeholder="Podaj cel wizyty" required><br>
+          <input type="datetime-local" name="date" id="date1" required><br>
+          <input type="text" name="kontakt" placeholder="Podaj pracownika" required><br><br>
+          <button type="submit" id="buttonz" name="submit">ZAPISZ</button>
+          <button type="reset" id="buttonr">RESET</button>
+      </form>
+      </center>
+    </section>
+
+    <script>
+    let sidebar = document.querySelector(".sidebar");
+    let closeBtn = document.querySelector("#btn");
+
+    closeBtn.addEventListener("click", ()=>{
+      sidebar.classList.toggle("open");
+      menuBtnChange();//calling the function(optional)
+    });
+
+
+    // following are the code to change sidebar button(optional)
+    function menuBtnChange() {
+     if(sidebar.classList.contains("open")){
+       closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+     }else {
+       closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+     }
+    }
+
+    var elem = document.getElementById("body");
+    var icon = document.getElementById("body");
+    function openFullscreen() {
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.webkitRequestFullscreen) { /* Safari */
+        elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) { /* IE11 */
+        elem.msRequestFullscreen();
+      }
+    }
+    function closeFullscreen() {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) { /* Safari */
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) { /* IE11 */
+        document.msExitFullscreen();
+      }
+    }
+
+    $( ".change" ).on("click", function() {
+              if( $( ".home-section" ).hasClass( "dark" )) {
+                  $( ".home-section" ).removeClass( "dark" );
+              } else {
+                  $( ".home-section" ).addClass( "dark" );
+              }
+          });
+    </script>
+  </body>
+</html>
